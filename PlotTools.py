@@ -18,8 +18,10 @@ import matplotlib as mpl
 
 # Just for test cases
 import sys
+from six.moves import range
+from six.moves import zip
 sys.path.insert(0, 'ParticleFilter/')
-from Simulator import Grid, Car, Pedestrian
+from ParticleFilter.Simulator import Grid, Car, Pedestrian
 
 
 ## Core Functionality
@@ -266,7 +268,7 @@ def setup_simulator():
 def main():
     grid = setup_simulator()
     steps_per_iter = 5
-    for i in xrange(3):
+    for i in range(3):
         head_grid = sim_head_grid(grid, steps=steps_per_iter)
 
         title = "Simulation Iteration %d" % ((i+1) * steps_per_iter)

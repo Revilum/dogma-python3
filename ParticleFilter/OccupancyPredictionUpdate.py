@@ -7,10 +7,13 @@ Collaborator: Henry Shi
 Update Dempster-Shafer masses for all cells.
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import Particle
 import Grid
 import numpy as np
 import pdb
+from six.moves import range
 
 def OccupancyPredictionUpdate(meas_cell_array, grid_cell_array, particle_array, p_B, alpha, check_values = False):
 
@@ -40,16 +43,16 @@ def OccupancyPredictionUpdate(meas_cell_array, grid_cell_array, particle_array, 
 
 			# debugging information
             if check_values and ((m_occ_up == 1.) and (m_occ_pred > 0.5)):
-                print "check updates", m_occ_up
-                print "check predictions", m_occ_pred
-                print "check actual predictions", meas_cell_array.get_cell_attr(j, "m_occ")
+                print("check updates", m_occ_up)
+                print("check predictions", m_occ_pred)
+                print("check actual predictions", meas_cell_array.get_cell_attr(j, "m_occ"))
 			
 			# debugging information
             if check_values and (m_occ_up > 1 or m_occ_up < 0):
-                print "start index: ", grid_cell_array.get_cell_attr(j, "start_index"), "end index: ", \
+                print("start index: ", grid_cell_array.get_cell_attr(j, "start_index"), "end index: ", \
                 grid_cell_array.get_cell_attr(j, "end_index"), "mass_occ: ", m_occ_up, "mass_free: ", \
                 m_free_up, "weight[start]: ", weight_array_accum[grid_cell_array.get_cell_attr(j, "start_index") - 1], \
-                "weight[end]: ", weight_array_accum[grid_cell_array.get_cell_attr(j, "end_index")]
+                "weight[end]: ", weight_array_accum[grid_cell_array.get_cell_attr(j, "end_index")])
                 assert(m_occ_up <= 1. and m_occ_up >= 0.)
                 assert (m_free_up <= 1. and m_free_up >= 0.)
                 assert(m_occ_up + m_free_up <= 1.)

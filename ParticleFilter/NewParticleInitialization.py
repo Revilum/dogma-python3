@@ -7,10 +7,13 @@ Collaborator: Masha Itkina
 New particle generation.
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import Particle
 import Grid
 import numpy as np
 import pdb
+from six.moves import range
 
 def NewParticleInitialization(Vb, grid_cell_array, meas_cell_array, birth_particle_array, check_values = False):
     # accumulated mass for new born particles by cell
@@ -70,12 +73,12 @@ def NewParticleInitialization(Vb, grid_cell_array, meas_cell_array, birth_partic
                     i = i+1
 
                 else:
-                    print "Sum of weights vs rho_b: ", sum_weight, rho_b
+                    print("Sum of weights vs rho_b: ", sum_weight, rho_b)
                     assert ((sum_weight - grid_cell_array.get_cell_attr(index, "rho_b"))**2 < 10.**-10)
 
         rho_b = grid_cell_array.get_cell_attr(index, "rho_b")
-        print "rho_b: ", rho_b
-        print "Sum of particles in the grid cell: ", sum_weight
+        print("rho_b: ", rho_b)
+        print("Sum of particles in the grid cell: ", sum_weight)
 
     return 
 

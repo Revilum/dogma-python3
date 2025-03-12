@@ -6,7 +6,10 @@ Author: Masha Itkina
 Collaborator: Henry Shi
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import numpy as np
+from six.moves import range
 
 class GridCell(object):
     """Represents a single grid cell."""
@@ -115,8 +118,8 @@ class CellArray(object):
 
     # sets attribute of a particular cell
     def set_cell_attr(self, cell_index, attribute, value):
-        if (len(self.cells) <= cell_index):        
-            print len(self.cells), cell_index
+        if len(self.cells) <= cell_index:
+            print(len(self.cells), cell_index)
         setattr(self.cells[cell_index], attribute, value)
         return
 

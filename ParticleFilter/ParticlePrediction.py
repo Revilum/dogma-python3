@@ -6,9 +6,11 @@ Author: Masha Itkina
 Propagates the particles according to transition model (linear).
 """
 
+from __future__ import absolute_import
 from Particle import *
 from Grid import *
 import pdb
+from six.moves import range
 
 # INPUT:
 # particle_array: class ParticleList object

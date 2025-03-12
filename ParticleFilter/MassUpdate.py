@@ -8,9 +8,12 @@ Update Dempster-Shafer masses for all cells.
 
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
 import Grid
 import numpy as np
 import pdb
+from six.moves import range
 
 def MassUpdate(meas_cell_array, grid_cell_array, p_B, alpha, check_values = False):
 
@@ -24,11 +27,11 @@ def MassUpdate(meas_cell_array, grid_cell_array, p_B, alpha, check_values = Fals
 	    
 		# debugging tests
 	    if check_values and (m_occ_pred > 1 or m_occ_pred < 0):
-		print "start index: ", grid_cell_array.get_cell_attr(j, "start_index"), "end index: ", \
+		print("start index: ", grid_cell_array.get_cell_attr(j, "start_index"), "end index: ", \
 		grid_cell_array.get_cell_attr(j, "end_index"), "mass_occ: ", m_occ_pred, "mass_free: ", \
-		m_free_pred
+		m_free_pred)
 		if m_occ_pred > 1.:
-		    print "This is m_occ_pred: ", m_occ_pred
+		    print("This is m_occ_pred: ", m_occ_pred)
 		assert(m_occ_pred <= 1.)
 		assert (m_occ_pred >= 0.)
 		assert (m_free_pred <= 1. and m_free_pred >= 0.)
@@ -39,7 +42,7 @@ def MassUpdate(meas_cell_array, grid_cell_array, p_B, alpha, check_values = Fals
 		meas_cell_array.get_cell_attr(j, "m_occ"), meas_cell_array.get_cell_attr(j, "m_free"))
 
 	    if check_values and (m_occ_up > 1.001 or m_occ_up < 0.):
-		print "mass_occ: ", m_occ_up, "mass_free: ", m_free_up
+		print("mass_occ: ", m_occ_up, "mass_free: ", m_free_up)
 		assert(m_occ_up <= 1. and m_occ_up >= 0.)
 		assert (m_free_up <= 1. and m_free_up >= 0.)
 		assert(m_occ_up + m_free_up <= 1.)
